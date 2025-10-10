@@ -1,9 +1,12 @@
 using UnityEngine;
+using UnityEngine.SceneManagement; 
 
 public class PlayerHealth : MonoBehaviour
 {
     public int maxHealth = 3; 
     private int currentHealth;
+    
+    public int damage = 1; 
     
     public Health HealthUI; // Renamed for clarity, assuming this refers to a UI script
     
@@ -16,13 +19,12 @@ public class PlayerHealth : MonoBehaviour
         }
     }
     
-    private void OnTriggerEnter2D(Collider2D collision) // Corrected method name
+    private void OnCollisionEnter2D(Collision2D collision) // Corrected method name
     {
-        Enemy enemy = collision.GetComponent<Enemy>();
-        if (enemy != null) 
+        Enemy enemy = collision.gameObject.GetComponent<Enemy>();
+        if (collision.gameObject.tag.Equals("Enemy")) 
         {
-            
-            TakeDamage(enemy.damage); 
+            TakeDamage(1); 
         }
     }
 
@@ -37,16 +39,16 @@ public class PlayerHealth : MonoBehaviour
         if (currentHealth <= 0)
         {
             Debug.Log("Player Defeated!"); // Example: Add end screen logic here
-            // e.g., SceneManager.LoadScene("GameOverScene");
+            SceneManager.LoadScene("Lose");
         }
     }
     
     void Update()
     {
         // Press 'H' to simulate taking 1 damage
-        if (Input.GetKeyDown(KeyCode.H))
+        //if (Input.GetKeyDown(KeyCode.H))
         {
-            TakeDamage(1);
+            //TakeDamage(1);
         }
     }
 
