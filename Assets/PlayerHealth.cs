@@ -26,7 +26,14 @@ public class PlayerHealth : MonoBehaviour
         {
             TakeDamage(1); 
         }
+        
+        if (collision.gameObject.tag.Equals("End")) 
+        {
+            SceneManager.LoadScene("Win");
+        }
     }
+    
+ 
 
     private void TakeDamage(int damage)
     {

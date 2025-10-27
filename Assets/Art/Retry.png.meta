@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: f02733b15bf466a43ad59a28879a8643
+guid: 9d75809831050f44f9ab0c8d014fd539
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8184770342774010555
-    second: Heart_Asset_0
+      213: 5207804079435638006
+    second: Retry_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Heart_Asset_0
+      name: Retry_0
       rect:
         serializedVersion: 2
-        x: 69
-        y: 60
-        width: 284
-        height: 240
+        x: 1683
+        y: 1739
+        width: 722
+        height: 250
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 54d8dceecbad96e80800000000000000
-      internalID: -8184770342774010555
+      spriteID: 6f46796d736d54840800000000000000
+      internalID: 5207804079435638006
       vertices: []
       indices: 
       edges: []

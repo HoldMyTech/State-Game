@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 50738892370f57d49b1b3828d6f6482d
+guid: 3ff66fca4228a274cb300fcd5c9c3e10
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4052153808598463850
-    second: Concept_Art_0
+      213: 6669092438763333724
+    second: Power_Up_1 (1)_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Concept_Art_0
+      name: Power_Up_1 (1)_0
       rect:
         serializedVersion: 2
-        x: 192
-        y: 113
-        width: 296
-        height: 640
+        x: 76
+        y: 84
+        width: 948
+        height: 841
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 69a0e3f849bd3c7c0800000000000000
-      internalID: -4052153808598463850
+      spriteID: c586bba1d306d8c50800000000000000
+      internalID: 6669092438763333724
       vertices: []
       indices: 
       edges: []
@@ -147,8 +147,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      Concept_Art_0: -4052153808598463850
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

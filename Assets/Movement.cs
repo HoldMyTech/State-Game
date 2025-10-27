@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -31,6 +33,7 @@ public class PlayerMovement : MonoBehaviour
         rb.freezeRotation = true;
     }
 
+    //Movement 
     void Update()
     {
         float horizontalInput = Input.GetAxis("Horizontal");
@@ -62,19 +65,19 @@ public class PlayerMovement : MonoBehaviour
             State = PlayerState.Jumping;
         }
 
-      
+      //Potentially used for animation later 
         if (State == PlayerState.Walking)
         {
           
-            spriteRenderer.color = Color.green; 
+            //spriteRenderer.color = Color.green; 
         }
         else if (State == PlayerState.Idle)
         {
-            spriteRenderer.color = Color.red; 
+            //spriteRenderer.color = Color.red; 
         }
         else if (State == PlayerState.Jumping)
         {
-            spriteRenderer.color = Color.cyan; 
+            //spriteRenderer.color = Color.cyan; 
         }
     }
 
@@ -84,5 +87,39 @@ public class PlayerMovement : MonoBehaviour
         {
             isGrounded = true;
         }
+
+        if (collision.gameObject.CompareTag("FallDamage"))
+        {
+            SceneManager.LoadScene("Lose");
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("PowerUp"))
+        {
+            Debug.Log("PowerUp");
+            Destroy(collision.gameObject);
+            jumpForce = 10;
+            spriteRenderer.color = Color.green;
+            StartCoroutine(ResetPower());
+        }
+
+        if (collision.gameObject.CompareTag("PowerUp2"))
+        {
+            Debug.Log("PowerUp2");
+            Destroy(collision.gameObject);
+            moveSpeed = 10;
+            spriteRenderer.color = Color.yellow;
+            StartCoroutine(ResetPower());
+        }
+    }
+
+    private IEnumerator ResetPower()
+    {
+        yield return new WaitForSeconds(5);
+        jumpForce = 5;
+        moveSpeed = 5;
+        spriteRenderer.color = Color.white;
     }
 }

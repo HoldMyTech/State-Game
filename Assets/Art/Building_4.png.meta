@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 81ae60ed630a9944189d5b00d46b78a2
+guid: a7e7b4f29971c2246bce16062af5587b
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1302723820812287101
-    second: Untitled_Artwork_0
+      213: -9144858906859269475
+    second: Building_4_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Untitled_Artwork_0
+      name: Building_4_0
       rect:
         serializedVersion: 2
-        x: 69
-        y: 60
-        width: 284
-        height: 240
+        x: 80
+        y: 99
+        width: 3644
+        height: 4177
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d7cb4f3b964341210800000000000000
-      internalID: 1302723820812287101
+      spriteID: d921697964fe61180800000000000000
+      internalID: -9144858906859269475
       vertices: []
       indices: 
       edges: []

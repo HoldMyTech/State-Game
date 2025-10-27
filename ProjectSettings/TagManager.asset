@@ -6,11 +6,15 @@ TagManager:
   tags:
   - Ground
   - Enemy
+  - End
+  - PowerUp
+  - PowerUp2
+  - FallDamage
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Foreground
   - Water
   - UI
   - 
