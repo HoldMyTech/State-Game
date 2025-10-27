@@ -80,7 +80,6 @@ public class PlayerMovement : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        // Check if the collision is with a "Ground" tagged object
         if (collision.gameObject.CompareTag("Ground"))
         {
             isGrounded = true;
