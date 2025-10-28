@@ -25,7 +25,8 @@ public class PlayerShoot : MonoBehaviour
 
         
         GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
-
+        
+        Destroy(bullet, 2f);
       
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
         if (rb != null)
