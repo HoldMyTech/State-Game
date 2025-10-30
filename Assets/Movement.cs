@@ -94,32 +94,49 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    private bool jumpPowerActive = false;
+    private bool speedPowerActive = false;
+
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("PowerUp"))
         {
             Debug.Log("PowerUp");
             Destroy(collision.gameObject);
-            jumpForce = 10;
+            jumpForce = 12;
             spriteRenderer.color = Color.green;
-            StartCoroutine(ResetPower());
+            jumpPowerActive = true;
+            StartCoroutine(ResetJumpPower());
         }
 
         if (collision.gameObject.CompareTag("PowerUp2"))
         {
             Debug.Log("PowerUp2");
             Destroy(collision.gameObject);
-            moveSpeed = 10;
+            moveSpeed = 12;
             spriteRenderer.color = Color.yellow;
-            StartCoroutine(ResetPower());
+            speedPowerActive = true;
+            StartCoroutine(ResetSpeedPower());
         }
     }
 
-    private IEnumerator ResetPower()
+    private IEnumerator ResetJumpPower()
     {
         yield return new WaitForSeconds(5);
-        jumpForce = 5;
-        moveSpeed = 5;
-        spriteRenderer.color = Color.white;
+        jumpForce = 8;
+        jumpPowerActive = false;
+        if (!speedPowerActive)
+            spriteRenderer.color = Color.white;
     }
+
+    private IEnumerator ResetSpeedPower()
+    {
+        yield return new WaitForSeconds(5);
+        moveSpeed = 8;
+        speedPowerActive = false;
+        if (!jumpPowerActive)
+            spriteRenderer.color = Color.white;
+    }
+
+  
 }
