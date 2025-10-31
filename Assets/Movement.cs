@@ -6,16 +6,19 @@ public class PlayerMovement : MonoBehaviour
 {
     public float moveSpeed = 5f;
     public float jumpForce = 5f;
+    
+    public AudioClip SoundEffect;
+    public AudioSource AS;
 
     private SpriteRenderer spriteRenderer;
     private Rigidbody2D rb;
-    private bool isGrounded = true; // Simple ground check flag
+    private bool isGrounded = true;
 
-    // Public fields for audio, though commented out in the original
-    // public AudioClip SoundEffect;
-    // public AudioSource AS;
+    private bool jumpPowerActive = false;
+    private bool speedPowerActive = false;
 
     public PlayerState State;
+
     public enum PlayerState
     {
         None = 0,
@@ -29,55 +32,38 @@ public class PlayerMovement : MonoBehaviour
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
-        // Prevent unwanted rotations
         rb.freezeRotation = true;
     }
 
-    //Movement 
     void Update()
     {
         float horizontalInput = Input.GetAxis("Horizontal");
 
-        // Set horizontal velocity
+        // Movement
         rb.linearVelocity = new Vector2(horizontalInput * moveSpeed, rb.linearVelocity.y);
 
-        // Flip sprite and set state based on horizontal input
+        // Flip sprite and set state
         if (horizontalInput > 0)
         {
-            spriteRenderer.flipX = false; // Facing right
+            spriteRenderer.flipX = false;
             State = PlayerState.Walking;
         }
         else if (horizontalInput < 0)
         {
-            spriteRenderer.flipX = true; // Facing left
+            spriteRenderer.flipX = true;
             State = PlayerState.Walking;
         }
-        else // No horizontal input, player is idle
+        else
         {
-            State = PlayerState.Idle; 
+            State = PlayerState.Idle;
         }
 
-        // Jump (only if grounded)
+        // Jumping
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-            isGrounded = false; // Prevent double-jumping
+            isGrounded = false;
             State = PlayerState.Jumping;
-        }
-
-      //Potentially used for animation later 
-        if (State == PlayerState.Walking)
-        {
-          
-            //spriteRenderer.color = Color.green; 
-        }
-        else if (State == PlayerState.Idle)
-        {
-            //spriteRenderer.color = Color.red; 
-        }
-        else if (State == PlayerState.Jumping)
-        {
-            //spriteRenderer.color = Color.cyan; 
         }
     }
 
@@ -92,18 +78,21 @@ public class PlayerMovement : MonoBehaviour
         {
             SceneManager.LoadScene("Lose");
         }
-    }
 
-    private bool jumpPowerActive = false;
-    private bool speedPowerActive = false;
+        if (collision.gameObject.CompareTag("Coin"))
+        {
+            if (AS && SoundEffect)
+                AS.PlayOneShot(SoundEffect);
+        }
+    }
 
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("PowerUp"))
         {
-            Debug.Log("PowerUp");
+            Debug.Log("PowerUp collected");
             Destroy(collision.gameObject);
-            jumpForce = 12;
+            jumpForce = 12f;
             spriteRenderer.color = Color.green;
             jumpPowerActive = true;
             StartCoroutine(ResetJumpPower());
@@ -111,9 +100,9 @@ public class PlayerMovement : MonoBehaviour
 
         if (collision.gameObject.CompareTag("PowerUp2"))
         {
-            Debug.Log("PowerUp2");
+            Debug.Log("PowerUp2 collected");
             Destroy(collision.gameObject);
-            moveSpeed = 12;
+            moveSpeed = 12f;
             spriteRenderer.color = Color.yellow;
             speedPowerActive = true;
             StartCoroutine(ResetSpeedPower());
@@ -123,7 +112,7 @@ public class PlayerMovement : MonoBehaviour
     private IEnumerator ResetJumpPower()
     {
         yield return new WaitForSeconds(5);
-        jumpForce = 8;
+        jumpForce = 5f;
         jumpPowerActive = false;
         if (!speedPowerActive)
             spriteRenderer.color = Color.white;
@@ -132,11 +121,9 @@ public class PlayerMovement : MonoBehaviour
     private IEnumerator ResetSpeedPower()
     {
         yield return new WaitForSeconds(5);
-        moveSpeed = 8;
+        moveSpeed = 5f;
         speedPowerActive = false;
         if (!jumpPowerActive)
             spriteRenderer.color = Color.white;
     }
-
-  
 }

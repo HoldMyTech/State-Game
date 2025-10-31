@@ -10,6 +10,7 @@ TagManager:
   - PowerUp
   - PowerUp2
   - FallDamage
+  - Coin
   layers:
   - Default
   - TransparentFX
